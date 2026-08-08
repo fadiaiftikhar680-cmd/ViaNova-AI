@@ -6,9 +6,9 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-st.set_page_config(page_title="RoadGuardian AI", page_icon="🛣️", layout="wide")
+st.set_page_config(page_title="ViaNova AI", page_icon="🛣️", layout="wide")
 
-API_URL = "http://127.0.0.1:8000"
+API_URL = "https://vianova-ai-production-69f1.up.railway.app"
 
 # ---------- CUSTOM CSS ----------
 st.markdown("""
@@ -36,7 +36,7 @@ p, span, label { color: #e0e0e0; }
 """, unsafe_allow_html=True)
 
 # ---------- SIDEBAR NAVIGATION ----------
-st.sidebar.title("🛣️ RoadGuardian AI")
+st.sidebar.title("🛣️ ViaNova AI")
 page = st.sidebar.radio("Navigate", ["🏠 Home", "📷 Single Prediction", "📁 Batch Prediction", "ℹ️ About"])
 
 CLASS_COLORS = {
@@ -54,7 +54,7 @@ def severity_color(sev):
 if page == "🏠 Home":
     st.markdown("""
     <div class="hero">
-        <h1>🛣️ RoadGuardian AI</h1>
+        <h1>🛣️ ViaNova AI</h1>
         <h3>Intelligent Road Damage Detection & Analysis System</h3>
         <p>Powered by Deep Learning (EfficientNetB0) — Detect potholes, cracks, and road damage instantly.</p>
     </div>
@@ -170,7 +170,6 @@ elif page == "📁 Batch Prediction":
 
                         st.success(f"✅ Analyzed {data['total']} images")
 
-                        # ---- Summary Metrics ----
                         c1, c2, c3, c4 = st.columns(4)
                         c1.metric("Total Images", len(df))
                         c2.metric("Avg Confidence", f"{df['confidence'].mean():.1f}%")
@@ -179,7 +178,6 @@ elif page == "📁 Batch Prediction":
 
                         st.markdown("---")
 
-                        # ---- Charts ----
                         gcol1, gcol2 = st.columns(2)
 
                         with gcol1:
@@ -208,7 +206,7 @@ elif page == "📁 Batch Prediction":
                         st.dataframe(df, use_container_width=True)
 
                         csv = df.to_csv(index=False).encode("utf-8")
-                        st.download_button("⬇️ Download Report (CSV)", csv, "roadguardian_report.csv", "text/csv")
+                        st.download_button("⬇️ Download Report (CSV)", csv, "vianova_report.csv", "text/csv")
 
                     else:
                         st.error("Error processing batch request")
@@ -217,9 +215,9 @@ elif page == "📁 Batch Prediction":
 
 # ---------- ABOUT ----------
 else:
-    st.title("ℹ️ About RoadGuardian AI")
+    st.title("ℹ️ About ViaNova AI")
     st.write("""
-    **RoadGuardian AI** is an intelligent road damage detection system built using
+    **ViaNova AI** is an intelligent road damage detection system built using
     Deep Learning (EfficientNetB0 Transfer Learning) trained on the RDD2022 dataset.
 
     **Technology Stack:**
