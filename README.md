@@ -1,60 +1,100 @@
 # 🚧 ViaNova-Ai
 
-**ViaNova-Ai**
-🚀 Flutter • Python • AI/ML • FastAPI-ready Backend
+**ViaNova-Ai** 🚀 Flutter • Python • AI/ML • FastAPI-ready Backend
 
-An End-to-End AI-powered application combining a Python backend, a web frontend, and a cross-platform Flutter mobile app.
+An End-to-End AI-powered Road Damage Detection System capable of detecting potholes, cracks, and road surface damage using a custom-trained EfficientNetB0 deep learning model.
 
-![Python](https://img.shields.io/badge/PYTHON-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Flutter](https://img.shields.io/badge/FLUTTER-Dart-02569B?style=for-the-badge&logo=flutter&logoColor=white)
-![AI](https://img.shields.io/badge/AI-Deep%20Learning-FF6F00?style=for-the-badge)
+![Python](https://img.shields.io/badge/PYTHON-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white&labelColor=333333)
+![Flutter](https://img.shields.io/badge/FLUTTER-DART-02569B?style=for-the-badge&logo=flutter&logoColor=white&labelColor=333333)
+![AI](https://img.shields.io/badge/AI-DEEP%20LEARNING-FF6F00?style=for-the-badge&labelColor=333333)
 
 ---
 
 ## 📖 Overview
 
-Manual, disconnected workflows for mobile, web, and AI-driven backend systems are often slow to build and hard to maintain.
+Road damage inspection is traditionally performed manually, making it slow, expensive, and prone to human error.
 
-**ViaNova-Ai** brings these together into a single, end-to-end system — a Python-powered backend for AI/ML logic, a web frontend, and a cross-platform Flutter mobile application, all working seamlessly together.
+This project presents an **AI-powered Road Damage Detection System** that automatically detects and classifies road damage using a deep learning model built on **EfficientNetB0**.
 
-The application provides a modern **Flutter mobile experience** connected to a **Python backend**, allowing users to interact with AI-powered features directly from their device.
+The application provides a modern **Streamlit Dashboard** and a **Flutter Mobile App**, both connected to a **FastAPI Backend**, allowing users to upload road images and instantly receive detection results.
 
 ---
 
 ## ✨ Features
 
-- 📍 Location Detection (Geolocation & Geocoding)
-- 🖼️ Image Upload & Media Picker
-- 🗣️ Text-to-Speech Support
-- 🔗 URL Launching
-- 📤 Content Sharing
-- 💾 Local Data Persistence
-- 🧠 AI/ML-Powered Backend
-- 📱 Cross-Platform App (Android, iOS, Windows, macOS, Linux, Web)
-- ⚡ Fast, Responsive UI
-- ☁️ Ready for Cloud Deployment
+- 🛣️ Road Damage Detection
+- 🕳️ Pothole Detection
+- 🧱 Crack Detection (Alligator, Longitudinal, Transverse)
+- 📊 Confidence Scores
+- 🩺 Road Health Score
+- ⚠️ Risk Level Assessment
+- 🛠️ Maintenance Recommendations
+- 📁 Single & Batch Image Prediction
+- 🗣️ Voice Output — the app speaks the detection result aloud (Text-to-Speech) after analyzing the uploaded image
+- 🌐 Multi-Language Support — Urdu, English, Saraiki, and Punjabi
+- 📍 Location Detection — captures and tags the road location using device GPS (geolocation & geocoding)
+- ⚡ FastAPI REST API
+- 🎨 Modern Streamlit Dashboard
+- 📱 Cross-Platform Mobile App (Flutter)
+- 💻 Responsive UI
+- ☁️ Ready for Railway Deployment
+
+---
+
+## 🗣️ Voice Output
+
+After the model detects road damage in an uploaded image, the mobile app reads the result out loud using **Text-to-Speech (flutter_tts)** — including the damage type, severity, and recommendation — so users get both a visual and spoken result.
+
+---
+
+## 🌐 Language Support
+
+The mobile app supports **4 languages**, allowing users to interact with the app and receive spoken/text results in their preferred language:
+
+- 🇬🇧 English
+- 🇵🇰 Urdu
+- Punjabi
+- Saraiki
+
+---
+
+## 📍 Location Detection
+
+The app captures the device's current location at the time of detection using **geolocation and geocoding**, allowing each detected road damage entry to be tagged with the location it was found — laying the groundwork for future map-based and GPS-integrated features.
+
+---
+
+## 🎯 Damage Classes
+
+| Class                | Description                                     |
+|------------------------|--------------------------------------------------|
+| Pothole                | Pothole damage                                  |
+| Alligator_Crack          | Alligator (interconnected) cracking             |
+| Longitudinal_Crack        | Crack running along the road direction          |
+| Transverse_Crack            | Crack running across the road                   |
+| Repair_Other                  | Previously repaired surface / other anomalies |
 
 ---
 
 ## 🏗️ System Architecture
 
 ```
-User Input
+Road Image
       │
       ▼
-Flutter Mobile App (mobile_app)
+Streamlit Frontend / Flutter Mobile App
       │
       ▼
-Python Backend API (backend)
+FastAPI REST API
       │
       ▼
-AI / ML Models
+EfficientNetB0 Detection Model
       │
       ▼
-Processed Results
+Prediction Results
       │
       ▼
-Response to App
+Damage Type + Confidence + Severity + Health Score
 ```
 
 ---
@@ -64,28 +104,38 @@ Response to App
 ### Programming Languages
 - Python
 - Dart
+- C++
+- HTML / CSS / JavaScript
 
-### Mobile Framework
-- Flutter
-
-### AI / Machine Learning
-- Deep Learning models (RNN / LSTM / GRU)
-- Jupyter Notebooks for experimentation
+### Deep Learning
+- TensorFlow
+- Keras
+- EfficientNetB0
 
 ### Backend
-- Python
+- FastAPI
+- Uvicorn
+- Docker
 
-### Location & Media
-- geolocator
-- geocoding
-- image_picker
-- path_provider
+### Frontend (Web)
+- Streamlit
+- Plotly
+- Pandas
 
-### Utilities
-- flutter_tts
-- url_launcher
-- share_plus
-- shared_preferences
+### Mobile App
+- Flutter
+- Dart (core application logic)
+- C++ (Windows & Linux desktop runners)
+- HTML / CSS / JavaScript (Flutter Web build output)
+
+### Computer Vision
+- Image Classification
+- Convolutional Neural Networks (CNN)
+- Image Preprocessing (Pillow, NumPy)
+
+### Data Processing
+- NumPy
+- Pandas
 
 ---
 
@@ -95,22 +145,28 @@ Response to App
 ViaNova-Ai
 │
 ├── backend/
-│   ├── main.py
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── model_loader.py
+│   │   ├── predict.py
+│   │   └── schemas.py
+│   ├── models/
+│   │   └── roadguardian_model.keras
 │   ├── requirements.txt
-│   └── utils/
+│   └── Dockerfile
 │
 ├── frontend/
-│   ├── app files
+│   ├── app.py
 │   └── requirements.txt
 │
 ├── mobile_app/
 │   ├── lib/                  # Dart source code
 │   ├── android/               # Android platform config
 │   ├── ios/                   # iOS platform config
-│   ├── windows/                # Windows platform config
+│   ├── windows/                # Windows platform config (C++)
 │   ├── macos/                  # macOS platform config
-│   ├── linux/                  # Linux platform config
-│   ├── web/                    # Web platform config
+│   ├── linux/                  # Linux platform config (C++)
+│   ├── web/                    # Web platform config (HTML/CSS/JS)
 │   └── test/                   # Tests
 │
 ├── notebooks/
@@ -138,12 +194,31 @@ cd backend
 
 pip install -r requirements.txt
 
-python main.py
+uvicorn app.main:app --reload
 ```
 
 **Backend URL**
 ```
 http://127.0.0.1:8000
+```
+
+**Swagger API**
+```
+http://127.0.0.1:8000/docs
+```
+
+### Frontend
+```
+cd frontend
+
+pip install -r requirements.txt
+
+streamlit run app.py
+```
+
+**Frontend URL**
+```
+http://localhost:8501
 ```
 
 ### Mobile App (Flutter)
@@ -161,27 +236,37 @@ Set it in `mobile_app/android/gradle.properties`:
 org.gradle.java.home=<path-to-jdk-17>
 ```
 
-### Frontend (Web)
-```
-cd frontend
-
-pip install -r requirements.txt
-
-# run command depends on your frontend framework
-```
-
 ---
 
-## 📷 Application Screenshots
+## API Endpoints
 
-**Home Screen**
-*Add Home Screenshot*
+**Home**
+```
+GET /
+```
 
-**Feature Screen**
-*Add Feature Screenshot*
+**Health Check**
+```
+GET /health
+```
 
-**Results Screen**
-*Add Results Screenshot*
+**Prediction**
+```
+POST /predict
+```
+
+**Batch Prediction**
+```
+POST /predict-batch
+```
+
+**Returns**
+- Damage Type
+- Confidence Score
+- Severity Level
+- Road Health Score
+- Risk Level
+- Recommendation
 
 ---
 
@@ -190,26 +275,25 @@ pip install -r requirements.txt
 **Backend**
 Railway
 
+**Frontend**
+Streamlit Community Cloud
+
 **Mobile App**
 Google Play / App Store
-
-**Frontend**
-Streamlit Community Cloud / Vercel
 
 ---
 
 ## 🔮 Future Improvements
 
-- Real-Time Detection
-- Push Notifications
-- GPS Integration
+- Video Damage Detection
+- Live Camera Detection
 - PDF Report Generation
 - User Authentication
 - Cloud Storage
-- Offline Mode
-- Multi-language Support
+- Damage Severity Analysis
 - Interactive Maps
 - Real-Time Monitoring
+- Additional Regional Language Support
 
 ---
 
@@ -239,6 +323,6 @@ This project is licensed under the MIT License.
 
 ---
 
-🚀 **ViaNova-Ai — Building Smarter, Connected Experiences**
+🚀 **AI for Safer Roads**
 
-Made with ❤️ using Python & Flutter
+Made with ❤️ using Python, TensorFlow, FastAPI, Streamlit & Flutter
